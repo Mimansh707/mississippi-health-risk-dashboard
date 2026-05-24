@@ -30,7 +30,7 @@ python app.py          # runs on :5001
 
 # Frontend
 cd client
-npm install
+npm install --legacy-peer-deps
 npm start              # runs on :3000
 ```
 
