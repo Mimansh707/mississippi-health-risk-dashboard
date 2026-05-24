@@ -35,6 +35,7 @@ Analyzes county-level health and social vulnerability data across Mississippi to
 
 ## Risk Score Formula
 Score = 0.25 × Diabetes + 0.20 × Obesity + 0.20 × Hypertension + 0.25 × SVI + 0.10 × COPD
+
 All health indicators are min-max normalized to 0-1. SVI is used directly as it is already normalized by the CDC.
 
 ---
