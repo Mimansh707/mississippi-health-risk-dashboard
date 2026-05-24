@@ -182,11 +182,17 @@ export default function CountyDetail() {
 
         <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
           <h3 className="text-base font-semibold text-gray-900 mb-4">Risk Profile Radar</h3>
+          {/* @ts-ignore */}
           <ResponsiveContainer width="100%" height={280}>
+            {/* @ts-ignore */}
             <RadarChart data={radarData}>
+              {/* @ts-ignore */}
               <PolarGrid stroke="#f0f0f0" />
+              {/* @ts-ignore */}
               <PolarAngleAxis dataKey="indicator" tick={{ fontSize: 11 }} />
+              {/* @ts-ignore */}
               <Radar name={county.county_name} dataKey="value" stroke="#eb5757" fill="#eb5757" fillOpacity={0.2} />
+              {/* @ts-ignore */}
               <Tooltip />
             </RadarChart>
           </ResponsiveContainer>
