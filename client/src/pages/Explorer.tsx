@@ -119,8 +119,8 @@ export default function Explorer() {
           >
             <option value="risk_rank">Sort by Risk Rank</option>
             <option value="diabetes_rate">Sort by Diabetes Rate</option>
-            <option value="diabetes_rate">Sort by Obesity Rate</option>
-            <option value="diabetes_rate">Sort by Hypertension Rate</option>
+            <option value="obesity_rate">Sort by Obesity Rate</option>
+            <option value="hypertension_rate">Sort by Hypertension Rate</option>
             <option value="copd_rate">Sort by COPD Rate</option>
             <option value="poverty_rate">Sort by Poverty Rate</option>
             <option value="county_name">Sort by Name</option>
