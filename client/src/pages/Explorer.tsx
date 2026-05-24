@@ -37,6 +37,8 @@ export default function Explorer() {
     if (sortBy === 'risk_rank') return a.risk_rank - b.risk_rank;
     if (sortBy === 'poverty_rate') return b.poverty_rate - a.poverty_rate;
     if (sortBy === 'diabetes_rate') return b.diabetes_rate - a.diabetes_rate;
+    if (sortBy === 'obesity_rate') return b.obesity_rate - a.obesity_rate;
+    if (sortBy === 'hypertension_rate') return b.hypertension_rate - a.hypertension_rate;
     if (sortBy === 'copd_rate') return b.copd_rate - a.copd_rate;
     return a.county_name.localeCompare(b.county_name);
   });
