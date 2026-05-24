@@ -22,6 +22,7 @@ export default function Explorer() {
       .then(r => { setCounties(r.data); setLoading(false); });
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { fetchCounties(); }, [search, riskLevel, driver]);
 
   const handleExport = () => {
