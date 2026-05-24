@@ -5,6 +5,8 @@ AI-powered public health risk analysis for all 82 Mississippi counties.
 **Live App:** https://mshealthrisk.vercel.app  
 **GitHub:** https://github.com/Mimansh707/mississippi-health-risk-dashboard
 
+NOTE: If the page or data does not load when you first visit, please wait 30-50 seconds and it will appear. This is because the backend is hosted on Render's free tier, which sleeps after inactivity and takes a moment to wake up on the first request.
+
 ---
 
 ## What It Does
