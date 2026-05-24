@@ -461,7 +461,7 @@ All health indicators min-max normalized to 0-1. SVI used directly (already norm
 {ai_section}
 <div class="footer">
   <span>Data: CDC PLACES 2025 · CDC/ATSDR SVI 2022</span>
-  <span>Mississippi Health Risk Dashboard · Gulf South Center Hackathon 2026</span>
+  <span>Mississippi Health Risk Dashboard</span>
 </div>
 
 <div class="no-print" style="text-align:center;margin-top:32px;">
