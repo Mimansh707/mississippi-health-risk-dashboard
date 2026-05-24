@@ -116,9 +116,11 @@ export default function Explorer() {
             className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="risk_rank">Sort by Risk Rank</option>
-            <option value="poverty_rate">Sort by Poverty Rate</option>
             <option value="diabetes_rate">Sort by Diabetes Rate</option>
+            <option value="diabetes_rate">Sort by Obesity Rate</option>
+            <option value="diabetes_rate">Sort by Hypertension Rate</option>
             <option value="copd_rate">Sort by COPD Rate</option>
+            <option value="poverty_rate">Sort by Poverty Rate</option>
             <option value="county_name">Sort by Name</option>
           </select>
         </div>
