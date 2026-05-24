@@ -30,7 +30,8 @@ export default function Explorer() {
     if (search) params.append('search', search);
     if (riskLevel) params.append('risk_level', riskLevel);
     if (driver) params.append('driver', driver);
-    window.open(`http://127.0.0.1:5001/api/export?${params.toString()}`);
+    const baseURL = process.env.REACT_APP_API_URL || 'https://ms-health-risk-api.onrender.com';
+    window.open(`${baseURL}/api/export?${params.toString()}`);
   };
 
   const sorted = [...counties].sort((a, b) => {
