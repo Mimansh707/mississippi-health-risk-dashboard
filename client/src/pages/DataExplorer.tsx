@@ -50,12 +50,6 @@ const CHART_ACCENT: Record<ChartType, { border: string; label: string }> = {
   scatter   : { border: '#14b8a6', label: 'text-teal-700'   },
 };
 
-const PALETTE: string[] = [
-  '#ef4444', '#f97316', '#eab308', '#22c55e',
-  '#14b8a6', '#3b82f6', '#8b5cf6', '#ec4899',
-  '#06b6d4', '#84cc16', '#f43f5e', '#6366f1',
-  '#78716c', '#64748b', '#1e293b', '#ffffff',
-];
 
 function getRiskLevel(score: number): string {
   if (score >= 0.75) return 'Critical';
@@ -186,57 +180,17 @@ function ScatterTip({ active, payload, xKey, yKey }: any) {
   );
 }
 
-function ColorPalette({
-  current, setter,
-}: { current: ColorMode; setter: (v: ColorMode) => void }) {
-  const isRisk = current === 'risk';
-  return (
-    <div>
-      {/* Risk Level row — shows first, above the palette grid */}
-      <button
-        onClick={() => setter('risk')}
-        className={`flex items-center gap-2 mb-2.5 px-2 py-1 rounded-lg w-full text-left transition-all ${
-          isRisk ? 'bg-blue-50 ring-1 ring-blue-400' : 'hover:bg-gray-100'
-        }`}
-      >
-        {/* Quadrant circle: each quarter uses one of the 4 risk colors */}
-        <svg width="22" height="22" viewBox="0 0 24 24" className="flex-shrink-0">
-          <circle cx="12" cy="12" r="11" fill="white" />
-          <path d="M 12 12 L 12 1 A 11 11 0 0 1 23 12 Z" fill="#c0392b" />
-          <path d="M 12 12 L 23 12 A 11 11 0 0 1 12 23 Z" fill="#e67e22" />
-          <path d="M 12 12 L 12 23 A 11 11 0 0 1 1 12 Z" fill="#f1c40f" />
-          <path d="M 12 12 L 1 12 A 11 11 0 0 1 12 1 Z" fill="#27ae60" />
-          <circle cx="12" cy="12" r="11" fill="none" stroke="#d1d5db" strokeWidth="1" />
-        </svg>
-        <span className="text-xs font-medium text-gray-700">Risk Level</span>
-      </button>
-
-      <div className="grid grid-cols-4 gap-1.5">
-        {PALETTE.map(color => {
-          const isSelected = current === color;
-          const isWhite    = color === '#ffffff';
-          return (
-            <button
-              key={color}
-              onClick={() => setter(color)}
-              title={color}
-              className="w-6 h-6 rounded-full transition-transform hover:scale-110 focus:outline-none"
-              style={{
-                backgroundColor: color,
-                // white circle gets a faint border so it's visible against white background
-                boxShadow: isSelected
-                  ? 'inset 0 0 0 2px white, 0 0 0 2px rgba(0,0,0,0.35)'
-                  : isWhite
-                  ? 'inset 0 0 0 1px #d1d5db'
-                  : 'none',
-              }}
-            />
-          );
-        })}
-      </div>
-    </div>
-  );
-}
+const COLOR_OPTIONS: { label: string; value: string }[] = [
+  { label: 'Risk Level', value: 'risk'      },
+  { label: 'Red',        value: '#ef4444'   },
+  { label: 'Orange',     value: '#f97316'   },
+  { label: 'Blue',       value: '#2563eb'   },
+  { label: 'Green',      value: '#16a34a'   },
+  { label: 'Teal',       value: '#0d9488'   },
+  { label: 'Purple',     value: '#9333ea'   },
+  { label: 'Pink',       value: '#ec4899'   },
+  { label: 'Gray',       value: '#6b7280'   },
+];
 
 export default function DataExplorer() {
   const [counties, setCounties] = useState<County[]>([]);
@@ -380,7 +334,7 @@ export default function DataExplorer() {
             Chart Type
           </p>
           <div className="flex gap-2 flex-wrap">
-            <TypeBtn value="bar"       label="Bar Chart"  />
+            <TypeBtn value="bar"       label="Bar Chart" />
             <TypeBtn value="histogram" label="Histogram" />
             <TypeBtn value="scatter"   label="Scatter Plot" />
           </div>
@@ -456,7 +410,15 @@ export default function DataExplorer() {
               <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
                 Color
               </label>
-              <ColorPalette current={barColor} setter={setBarColor} />
+              <select
+                value={barColor}
+                onChange={e => setBarColor(e.target.value)}
+                className={SEL}
+              >
+                {COLOR_OPTIONS.map(o => (
+                  <option key={o.value} value={o.value}>{o.label}</option>
+                ))}
+              </select>
             </div>
           </div>
         )}
@@ -497,7 +459,15 @@ export default function DataExplorer() {
               <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
                 Color
               </label>
-              <ColorPalette current={scatterColor} setter={setScatterColor} />
+              <select
+                value={scatterColor}
+                onChange={e => setScatterColor(e.target.value)}
+                className={SEL}
+              >
+                {COLOR_OPTIONS.map(o => (
+                  <option key={o.value} value={o.value}>{o.label}</option>
+                ))}
+              </select>
             </div>
 
             <div>
