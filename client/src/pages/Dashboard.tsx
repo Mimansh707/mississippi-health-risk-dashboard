@@ -432,13 +432,20 @@ export default function Dashboard() {
               as it is already normalized by the CDC (0 = least vulnerable, 1 = most vulnerable).
             </p>
 
-            <div className="bg-red-50 border border-red-100 rounded-lg p-3 mb-4">
-              <p className="text-xs font-semibold text-red-600 mb-1">Dual High-Risk Flag</p>
-              <p className="text-xs text-gray-600 leading-relaxed">
-                Counties are flagged as Dual High-Risk when they rank in the top quartile for composite
-                risk score AND have an SVI score above 0.75, meaning they face the highest health
-                burden with the least resources.
+            <div className="bg-blue-50 border border-blue-100 rounded-lg p-3 mb-4">
+              <p className="text-xs font-semibold text-blue-700 mb-2">What does the Risk Score mean?</p>
+              <p className="text-xs text-gray-600 leading-relaxed mb-3">
+                A score closer to 1.0 indicates a county with severe health burdens and high social
+                vulnerability. A score closer to 0.0 indicates relatively better health outcomes and
+                lower vulnerability.
               </p>
+              <p className="text-xs font-semibold text-gray-700 mb-1">Risk levels:</p>
+              <ul className="text-xs text-gray-600 space-y-1">
+                <li><span className="font-medium text-red-600">Critical (0.75+):</span> Immediate intervention needed</li>
+                <li><span className="font-medium text-orange-500">High (0.50–0.75):</span> Elevated risk, targeted programs needed</li>
+                <li><span className="font-medium text-yellow-600">Moderate (0.25–0.50):</span> Monitor and preventive care</li>
+                <li><span className="font-medium text-green-600">Low (0–0.25):</span> Relatively better outcomes</li>
+              </ul>
             </div>
 
             <p className="text-xs text-gray-400">
