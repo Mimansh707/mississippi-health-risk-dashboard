@@ -380,8 +380,8 @@ export default function DataExplorer() {
             Chart Type
           </p>
           <div className="flex gap-2 flex-wrap">
-            <TypeBtn value="histogram" label="Histogram" />
             <TypeBtn value="bar"       label="Bar Chart"  />
+            <TypeBtn value="histogram" label="Histogram" />
             <TypeBtn value="scatter"   label="Scatter Plot" />
           </div>
         </div>
