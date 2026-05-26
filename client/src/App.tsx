@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Explorer from './pages/Explorer';
+import DataExplorer from './pages/DataExplorer';
 import CountyDetail from './pages/CountyDetail';
 import MapView from './pages/MapView';
 import Compare from './pages/Compare';
@@ -11,7 +12,8 @@ function App() {
 
   const links = [
     { to: '/', label: 'Dashboard', end: true },
-    { to: '/explorer', label: 'County Explorer' },
+    { to: '/explorer', label: 'County Explorer', end: true },
+    { to: '/data-explorer', label: 'Data Explorer' },
     { to: '/map', label: 'Risk Map' },
     { to: '/compare', label: 'Compare Counties' },
   ];
@@ -91,6 +93,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/explorer" element={<Explorer />} />
+            <Route path="/data-explorer" element={<DataExplorer />} />
             <Route path="/map" element={<MapView />} />
             <Route path="/compare" element={<Compare />} />
             <Route path="/county/:fips" element={<CountyDetail />} />

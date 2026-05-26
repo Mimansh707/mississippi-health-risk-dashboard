@@ -130,12 +130,11 @@ export default function MapView() {
     setTooltipPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
 
-  // Hover tooltip takes precedence; pinned shows only when not actively hovering
+  // Show the pinned tooltip only when the user isn't actively hovering, so the hover card takes priority
   const showPinnedTooltip = !hoveredCounty && pinnedCounty;
 
   return (
     <div className="space-y-6 page-transition">
-      {/* Header */}
       <div>
         <h2 className="text-2xl font-bold text-gray-900">Mississippi Risk Map</h2>
         <p className="text-gray-500 text-sm mt-1">
@@ -143,7 +142,6 @@ export default function MapView() {
         </p>
       </div>
 
-      {/* Search row */}
       <div className="relative flex-1 min-w-64 max-w-sm">
         <input
           type="text"
@@ -183,7 +181,6 @@ export default function MapView() {
         )}
       </div>
 
-      {/* Legend */}
       <div className="flex gap-5 flex-wrap">
         {RISK_TIERS.map(item => (
           <div key={item.label} className="flex items-center gap-2">
@@ -193,7 +190,6 @@ export default function MapView() {
         ))}
       </div>
 
-      {/* Full-width map */}
       <div
         ref={mapContainerRef}
         role="img"
@@ -241,7 +237,6 @@ export default function MapView() {
           </Geographies>
         </ComposableMap>
 
-        {/* Hover tooltip: follows cursor */}
         {hoveredCounty && (() => {
           const badge = getRiskBadge(hoveredCounty.composite_risk_score);
           const tooltipWidth = 230;
@@ -264,7 +259,6 @@ export default function MapView() {
           );
         })()}
 
-        {/* Pinned tooltip: anchored top-left when a county is search-selected */}
         {showPinnedTooltip && (() => {
           const badge = getRiskBadge(pinnedCounty!.composite_risk_score);
           return (
@@ -285,7 +279,6 @@ export default function MapView() {
           );
         })()}
 
-        {/* Bottom hint overlay */}
         <div className="absolute bottom-0 left-0 right-0 text-center py-1.5 text-xs text-gray-400 bg-white/80">
           Hover to preview · Click to open county profile · Blue = searched county
         </div>

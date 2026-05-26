@@ -59,7 +59,7 @@ export default function Compare() {
     setData(resolved);
   }, [selected, allCounties]);
 
-  // If the county being simulated is removed from the comparison, clear the sim
+  // Clear the simulator when the user deselects the county being simulated
   useEffect(() => {
     if (simFips && !selected.includes(simFips)) {
       setSimFips('');
@@ -67,7 +67,7 @@ export default function Compare() {
     }
   }, [selected, simFips]);
 
-  // Reset sliders to county's real values whenever the sim county changes
+  // Start sliders at the county's actual values so the user sees the baseline before adjusting
   useEffect(() => {
     if (!simFips) { setSimValues(DEFAULT_SIM); return; }
     const c = allCounties.find(ct => ct.fips === simFips);
@@ -89,7 +89,7 @@ export default function Compare() {
 
   const activeData = data.filter(Boolean) as County[];
 
-  // min/max bounds from the full dataset; recomputed once after initial fetch
+  // Normalization bounds derived from the full dataset — needed to replicate the server's scoring formula
   const norms = useMemo(() => {
     if (allCounties.length === 0) return null;
     const col = (key: keyof County) => allCounties.map(c => c[key] as number);
@@ -217,7 +217,6 @@ export default function Compare() {
         ))}
       </div>
 
-      {/* Radar + comparison table: only when ≥ 2 counties selected */}
       {activeData.length >= 2 && (
         <>
           <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
@@ -302,7 +301,6 @@ export default function Compare() {
         </div>
       )}
 
-      {/* ── What-If Simulator ─────────────────────────────────────────────── */}
       <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
         <div className="mb-5">
           <h3 className="text-base font-semibold text-gray-900">What-If Simulator</h3>
@@ -336,7 +334,6 @@ export default function Compare() {
             {simCounty && (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
-                {/* Left column: sliders */}
                 <div className="space-y-5">
                   {SLIDERS.map(s => {
                     const current  = simValues[s.key];
@@ -385,7 +382,6 @@ export default function Compare() {
                   </button>
                 </div>
 
-                {/* Right column: result panel */}
                 <div className="space-y-4">
 
                   <div aria-live="polite" aria-atomic="true" className="bg-gray-50 rounded-xl p-4 space-y-3">
@@ -436,7 +432,6 @@ export default function Compare() {
                     </div>
                   </div>
 
-                  {/* Side-by-side bar */}
                   <div className="space-y-2">
                     {([
                       { label: 'Original',  score: originalScore, color: origLevel.color },

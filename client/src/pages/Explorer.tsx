@@ -165,7 +165,7 @@ export default function Explorer() {
                 <td className="px-4 py-3 font-medium text-gray-900">
                   {county.county_name}
                   {county.high_risk_flag === 1 && (
-                    <span className="ml-2 text-xs bg-red-100 text-red-600 px-1.5 py-0.5 rounded">High Risk</span>
+                    <span className="ml-2 text-xs bg-red-100 text-red-600 px-1.5 py-0.5 rounded">Dual High-Risk</span>
                   )}
                 </td>
                 <td className="px-4 py-3 font-semibold text-gray-900">{county.composite_risk_score.toFixed(3)}</td>
